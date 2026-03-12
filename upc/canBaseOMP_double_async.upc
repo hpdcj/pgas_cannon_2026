@@ -105,8 +105,6 @@ int main(int argc, char *argv[])
     free(A);
     free(B);
     free(C);
-upc_all_free((shared void*)shared_A);
-upc_all_free((shared void*)shared_B);
 
     return 0;
 }
