@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package cannon;
+
+option go_package = "mygomodule/cannon";
+
+service CannonService {
+    rpc NodeReady(ReadyRequest) returns (ReadyResponse);
+    rpc SyncStep(SyncRequest) returns (SyncResponse);
+    rpc SendBlock(SendBlockRequest) returns (SendBlockResponse);
+    rpc NodeDone(DoneRequest) returns (DoneResponse);
+}
+
+message SendBlockRequest {
+    string nodeName = 1;
+    string direction = 2;
+    repeated double data = 3;
+    string blockType = 4;
+}
+
+message SendBlockResponse {
+}
+
+message SyncRequest {
+    string nodeName = 1;
+    int32 step = 2;
+}
+
+message SyncResponse {
+    int32 step = 1;
+}
+
+message ReadyRequest {
+    string nodeName = 1;
+}
+
+message ReadyResponse {
+    repeated string readyNodes = 1;
+}
+
+message DoneRequest {
+    string nodeName = 1;
+}
+
+message DoneResponse {
+    repeated string doneNodes = 1;
+}
